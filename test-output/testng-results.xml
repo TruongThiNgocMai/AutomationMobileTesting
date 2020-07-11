@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="55164" started-at="2020-07-10T10:59:22Z" finished-at="2020-07-10T11:00:17Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="55164" started-at="2020-07-10T10:59:22Z" finished-at="2020-07-10T11:00:17Z">
+      <class name="mobileTest.AutoGenerateEmail">
+        <test-method status="PASS" signature="setup()[pri:0, instance:mobileTest.AutoGenerateEmail@8e0379d]" name="setup" is-config="true" duration-ms="16199" started-at="2020-07-10T17:59:22Z" finished-at="2020-07-10T17:59:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="DotheMailAction()[pri:0, instance:mobileTest.AutoGenerateEmail@8e0379d]" name="DotheMailAction" duration-ms="36809" started-at="2020-07-10T17:59:38Z" finished-at="2020-07-10T18:00:15Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DotheMailAction -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:mobileTest.AutoGenerateEmail@8e0379d]" name="tearDown" is-config="true" duration-ms="2138" started-at="2020-07-10T18:00:15Z" finished-at="2020-07-10T18:00:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- mobileTest.AutoGenerateEmail -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
