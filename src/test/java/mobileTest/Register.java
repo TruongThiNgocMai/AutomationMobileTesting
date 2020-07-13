@@ -23,7 +23,7 @@ import java.util.*;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 
-public class resgister extends ExtendReport {
+public class Register extends ExtendReport {
 	AndroidDriver<MobileElement> driver;
 
 	MobileElement signUpButton;

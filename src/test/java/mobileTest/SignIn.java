@@ -26,7 +26,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class signIn extends ExtendReport {
+public class SignIn extends ExtendReport {
 	AndroidDriver<MobileElement> driver;
 
 	MobileElement userNameInput;
@@ -74,8 +74,10 @@ public class signIn extends ExtendReport {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		ExtentTest test = extent.createTest("RegisterTest", "Demo sample description");
 		test.log(Status.INFO, "Test Sign In with get data from excel file started");
-		signIn signIn = new signIn();
+		SignIn signIn = new SignIn();
+		//get data of userName field
 		String userNameValue = signIn.ReadCellData(1, 4);
+		//get data of password field
 		String passwordValue = signIn.ReadCellData(1, 5);
 		test.log(Status.PASS, "Get data from excel file");
 
