@@ -2,9 +2,8 @@ package mobileTest;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.By; 
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -12,6 +11,11 @@ import org.testng.annotations.Test;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+
+import java.io.*;
+import java.util.*;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.*;
 
 public class AutoGenerateEmail {
 
@@ -26,9 +30,14 @@ public class AutoGenerateEmail {
 	MobileElement passwordInput;
 	MobileElement checkbox;
 	MobileElement createNewAccount;
-	
+	MobileElement accountIcon;
+	MobileElement continueButton;
+
 	String phoneInputValue = "0396987863";
 	String passwordInputValue = "maimai99";
+	String fullNameInputValue;
+	String emailInputValue;
+	String userNameInputValue;
 
 	@BeforeTest
 	public void setup() {
@@ -52,8 +61,8 @@ public class AutoGenerateEmail {
 						+ visibleText + "\").instance(0))")
 				.click();
 	}
-	
-	protected String getSaltString() {
+
+	protected String getRandomString() {
 		String SALTCHARS = "abcdefghijkkmnopqrstuvxyz1234567890";
 		StringBuilder salt = new StringBuilder();
 		Random rnd = new Random();
@@ -66,37 +75,96 @@ public class AutoGenerateEmail {
 	}
 
 	@Test
-	private void DotheMailAction() throws InterruptedException {
-		System.out.print("Test Register with auto generate element start!!!");
+	private void DotheMailAction() throws InterruptedException, FileNotFoundException, IOException {
+		@SuppressWarnings("resource")
+		XSSFWorkbook AWorkbook = new XSSFWorkbook(); // Create blank workbook
+
+		System.out.println("Test Register with auto generate element start!!!");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		
-		// Click on SignUp button to create a new account
-		signUpButton = driver.findElement(By.xpath("//*[contains(@text,'Sign Up Now')]"));
-		signUpButton.click();
 
-		// Input data for full required fields
-		fullNameInput = driver.findElement(By.xpath("//*[contains(@text,'Full Name')]"));
-		fullNameInput.sendKeys("Truong Thi " + getSaltString() + " Mai");
+//		accountIcon = driver
+//				.findElementByXPath("//android.widget.FrameLayout[@content-desc='Profile, tab, 2 out of 2']");
+//		accountIcon.click();
+//
+//		// scroll and click on Log out button
+//		scrollAndClick("Log Out");
 
-		emailInput = driver.findElement(By.xpath("//*[contains(@text,'Email')]"));
-		emailInput.sendKeys("mai" + getSaltString() + "@gmail.com");
+		for (int i = 1; i < 3; i++) {
+			XSSFSheet spreadsheet = AWorkbook.createSheet(" DataTest " + i);
+			XSSFRow row;
 
-		phoneInput = driver.findElement(By.xpath("//*[contains(@text,'Phone')]"));
-		phoneInput.sendKeys(phoneInputValue);
+			// Click on SignUp button to create a new account
+			signUpButton = driver.findElement(By.xpath("//*[contains(@text,'Sign Up Now')]"));
+			signUpButton.click();
 
-		userNameInput = driver.findElement(By.xpath("//*[contains(@text,'Username')]"));
-		userNameInput.sendKeys("mai" + getSaltString() + "mai");
+			// Input data for full required fields
+			fullNameInput = driver.findElement(By.xpath("//*[contains(@text,'Full Name')]"));
+			fullNameInputValue = "Truong Thi " + getRandomString() + " Mai";
+			fullNameInput.sendKeys(fullNameInputValue);
 
-		passwordInput = driver.findElement(By.xpath("//*[contains(@text,'Password')]"));
-		passwordInput.sendKeys(passwordInputValue);
+			emailInput = driver.findElement(By.xpath("//*[contains(@text,'Email')]"));
+			emailInputValue = "mai" + getRandomString() + "@gmail.com";
+			emailInput.sendKeys(emailInputValue);
 
-		checkbox = driver.findElement(By.xpath("//android.widget.CheckBox"));
-		checkbox.click();
-		// Click on button
-		createNewAccount = driver.findElement(By.xpath("//*[contains(@text,'CREATE NEW ACCOUNT')]"));
-		createNewAccount.click();
+			phoneInput = driver.findElement(By.xpath("//*[contains(@text,'Phone')]"));
+			phoneInput.sendKeys(phoneInputValue);
 
-		Thread.sleep(3000);
+			userNameInput = driver.findElement(By.xpath("//*[contains(@text,'Username')]"));
+			userNameInputValue = "mai" + getRandomString() + "mai";
+			userNameInput.sendKeys(userNameInputValue);
+
+			passwordInput = driver.findElement(By.xpath("//*[contains(@text,'Password')]"));
+			passwordInput.sendKeys(passwordInputValue);
+
+			checkbox = driver.findElement(By.xpath("//android.widget.CheckBox"));
+			checkbox.click();
+
+			// Click on button
+			createNewAccount = driver.findElement(By.xpath("//*[contains(@text,'CREATE NEW ACCOUNT')]"));
+			createNewAccount.click();
+
+			Thread.sleep(5000);
+
+			continueButton = driver.findElement(By.xpath("//*[contains(@text,'CONTINUE NOW')]"));
+
+			continueButton.click();
+			accountIcon = driver
+					.findElementByXPath("//android.widget.FrameLayout[@content-desc='Profile, tab, 2 out of 2']");
+			accountIcon.click();
+			// scroll and click on Log out button
+			scrollAndClick("Log Out");
+
+			Thread.sleep(5000);
+
+			Map<String, Object[]> dataInfor = new TreeMap<String, Object[]>();
+			dataInfor.put("1",
+					new Object[] { "ExecuteID", "FULLNAME", "EMAIL", "PHONE_NUMBER", "USERNAME", "PASSWORD" });
+			for (int j = 0; j < i; j++) {
+				// j + 1: start with id = 1
+				dataInfor.put("2", new Object[] { j + 1 + "", fullNameInputValue, emailInputValue, phoneInputValue,
+						userNameInputValue, passwordInputValue });
+//			dataInfor.put("3", new Object[] { i + 2 + "", fullNameInputValue, emailInputValue, phoneInputValue, userNameInputValue,
+//					passwordInputValue });
+			}
+			// Iterate over data and write to sheet
+			Set<String> keyid = dataInfor.keySet();
+			int rowid = 0;
+			for (String key : keyid) {
+				row = spreadsheet.createRow(rowid++);
+				Object[] objectArr = dataInfor.get(key);
+				int cellid = 0;
+				for (Object obj : objectArr) {
+					Cell cell = row.createCell(cellid++);
+					cell.setCellValue((String) obj);
+				}
+			}
+
+		}
+
+		FileOutputStream out = new FileOutputStream(new File("AllData.xlsx"));
+		AWorkbook.write(out);
+		System.out.print("Write data into excel file is done!!!");
+		out.close();
 	}
 
 	@AfterTest

@@ -2,24 +2,28 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="55164" started-at="2020-07-10T10:59:22Z" finished-at="2020-07-10T11:00:17Z">
+  <suite name="Default suite" duration-ms="28026" started-at="2020-07-13T03:19:18Z" finished-at="2020-07-13T03:19:46Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="55164" started-at="2020-07-10T10:59:22Z" finished-at="2020-07-10T11:00:17Z">
-      <class name="mobileTest.AutoGenerateEmail">
-        <test-method status="PASS" signature="setup()[pri:0, instance:mobileTest.AutoGenerateEmail@8e0379d]" name="setup" is-config="true" duration-ms="16199" started-at="2020-07-10T17:59:22Z" finished-at="2020-07-10T17:59:38Z">
+    <test name="Default test" duration-ms="28026" started-at="2020-07-13T03:19:18Z" finished-at="2020-07-13T03:19:46Z">
+      <class name="mobileTest.signIn">
+        <test-method status="PASS" signature="reportSetup()[pri:0, instance:mobileTest.signIn@2133814f]" name="reportSetup" is-config="true" duration-ms="445" started-at="2020-07-13T10:19:17Z" finished-at="2020-07-13T10:19:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reportSetup -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:mobileTest.signIn@2133814f]" name="setup" is-config="true" duration-ms="14833" started-at="2020-07-13T10:19:18Z" finished-at="2020-07-13T10:19:32Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="DotheMailAction()[pri:0, instance:mobileTest.AutoGenerateEmail@8e0379d]" name="DotheMailAction" duration-ms="36809" started-at="2020-07-10T17:59:38Z" finished-at="2020-07-10T18:00:15Z">
+        <test-method status="PASS" signature="SignInAccount()[pri:0, instance:mobileTest.signIn@2133814f]" name="SignInAccount" duration-ms="13182" started-at="2020-07-13T10:19:32Z" finished-at="2020-07-13T10:19:46Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- DotheMailAction -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:mobileTest.AutoGenerateEmail@8e0379d]" name="tearDown" is-config="true" duration-ms="2138" started-at="2020-07-10T18:00:15Z" finished-at="2020-07-10T18:00:17Z">
+        </test-method> <!-- SignInAccount -->
+        <test-method status="PASS" signature="reportTeardowm()[pri:0, instance:mobileTest.signIn@2133814f]" name="reportTeardowm" is-config="true" duration-ms="1057" started-at="2020-07-13T10:19:46Z" finished-at="2020-07-13T10:19:47Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- mobileTest.AutoGenerateEmail -->
+        </test-method> <!-- reportTeardowm -->
+      </class> <!-- mobileTest.signIn -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
