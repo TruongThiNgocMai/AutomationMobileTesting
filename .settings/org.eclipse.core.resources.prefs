@@ -1,2 +1,7 @@
 eclipse.preferences.version=1
+encoding//src/test/java/NailApp/LoginSuccessfully.java=UTF-8
+encoding//src/test/java/NailApp/LoginUnsuccessfully.java=UTF-8
+encoding//src/test/java/NailApp/LogoutSuccessfully.java=UTF-8
+encoding//src/test/java/NailApp/RegisterSuccessfully.java=UTF-8
+encoding//src/test/java/NailApp/RegisterUnsuccessfully.java=UTF-8
 encoding//src/test/java/mobileTest/signIn.java=UTF-8
